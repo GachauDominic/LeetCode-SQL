@@ -1,0 +1,36 @@
+-- Write your PostgreSQL query statement below
+SELECT customer_number
+FROM Orders
+GROUP BY customer_number
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+
+/*
+SELECT customer_number
+FROM Orders
+GROUP BY customer_number
+HAVING COUNT(*) = (
+    SELECT MAX(order_count)
+    FROM (
+        SELECT COUNT(*) AS order_count
+        FROM Orders
+        GROUP BY customer_number
+    ) t
+);
+*/
+
+/*
+Follow-up: What if Multiple Customers Have the Largest Number of Orders?
+
+SELECT customer_number
+FROM Orders
+GROUP BY customer_number
+HAVING COUNT(*) = (
+    SELECT MAX(order_count)
+    FROM (
+        SELECT COUNT(*) AS order_count
+        FROM Orders
+        GROUP BY customer_number
+    ) t
+);
+*/
